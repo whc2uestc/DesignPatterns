@@ -28,13 +28,13 @@ class ConcreteProductP1:public Product{
 	void quit();
 };
 ConcreteProductP1::start(){
-	cout<<"<<----------P1 启动---------->>"<<endl;
+	cout<<"<<----------P1这样启动---------->>"<<endl;
 }
 ConcreteProductP1::execute(){
-	cout<<"<<----------P1 执行---------->>"<<endl;
+	cout<<"<<----------P1这样执行---------->>"<<endl;
 }
 ConcreteProductP1::quit(){
-	cout<<"<<----------P1 退出---------->>"<<endl;
+	cout<<"<<----------P1这样退出---------->>"<<endl;
 }
 
 class ConcreteProductP2:public Product{
@@ -45,13 +45,13 @@ class ConcreteProductP2:public Product{
 	void quit();
 };
 ConcreteProductP2::start(){
-	cout<<"<<----------P2 启动---------->>"<<endl;
+	cout<<"<<----------P2这样启动---------->>"<<endl;
 }
 ConcreteProductP2::execute(){
-	cout<<"<<----------P2 执行---------->>"<<endl;
+	cout<<"<<----------P2这样执行---------->>"<<endl;
 }
 ConcreteProductP2::quit(){
-	cout<<"<<----------P2 退出---------->>"<<endl;
+	cout<<"<<----------P2这样退出---------->>"<<endl;
 }
 
 
@@ -65,6 +65,7 @@ public:
 };
 
 //ConcreteCreator（重定义工厂方法以返回一个ConcreteProduct实例）
+/*************************工厂1生成产品1**************************/
 class ConcreteCreatorP1:public Creator{
 public:
 	ConcreteCreatorP1(){};
@@ -75,7 +76,7 @@ Product* ConcreteCreatorP1::createProduct(){
 	return new ConcreteProductP1();
 }
 
-
+/*************************工厂2生成产品2**************************/
 class ConcreteCreatorP2:public Creator{
 public:
 	ConcreteCreatorP2(){};
@@ -85,3 +86,21 @@ public:
 Product* ConcreteCreatorP2::createProduct(){
 	return new ConcreteProductP2();
 }
+
+//Client
+int main(){
+	Creator *factory = new ConcreteCreatorP1();
+	Product *p1 = factory.createProduct();
+	p1.start();		//p1是这样启动的
+	p1.execute();	//p1是这样运行的
+	p1.quit();		//p1是这样结束的
+	
+	Creator *factory = new ConcreteCreatorP2();
+	Product *p2 = factory.createProduct();
+	p2.start();		//p2是这样启动的
+	p2.execute(); 	//p2是这样运行的
+	p2.quit(); 	//p2是这样结束的
+	
+	return 0;
+}
+
